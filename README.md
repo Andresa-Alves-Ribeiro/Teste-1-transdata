@@ -1,8 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+<h1 align="center"> 
+	Caixa Eletrônico - Calculo de Notas
+</h1>
 
-## Getting Started
+<p align="center">
+ <a href="#descricao">Descricão</a> •
+ <a href="#funcionalidades">Funcionalidades</a> •
+ <a href="#tecnologias">Tecnologias</a> •
+ <a href="#execucao">Como Executar?</a> •
+ <a href="#funciona">Como funciona?</a> •
+ <a href="#contato">Contato</a> • 
+ <a href="#licença">Licença</a>
+</p>
 
-First, run the development server:
+## Demonstração
+
+<a id="descricao"></a>
+
+## Descrição
+
+Este projeto simula um **Caixa Eletrônico** simples, onde o usuário pode informar um valor numérico e o sistema calcula a **menor quantidade de cédulas necessárias** para o saque, utilizando notas de **R$ 20, R$ 10, R$ 5 e R$ 1**.
+
+A aplicação foi construída em **ReactJS** e utiliza a biblioteca **Semantic UI** para a interface de usuário. O objetivo do projeto é demonstrar a implementação de um sistema de cálculo de notas e a criação de uma interface simples e intuitiva.
+
+<a id="funcionalidades"></a>
+
+## 📄 Funcionalidades
+
+- O usuário insere um valor numérico (inteiro).
+- O sistema valida a entrada e garante que apenas números inteiros sejam permitidos.
+- A aplicação calcula a **menor quantidade de notas possíveis** (20, 10, 5 e 1) para o valor informado.
+- Exibe uma tabela com a quantidade de cédulas de cada valor.
+- Exibe um resumo do saque, com o valor retirado e o total de notas utilizadas.
+- Caso o valor informado seja inválido (menor que 1 ou não numérico), um erro é mostrado.
+
+<a id="tecnologias"></a>
+
+## 🛠️ Tecnologias Utilizadas
+
+- **ReactJS**: Biblioteca JavaScript para construção de interfaces.
+- **Next.js**: Framework para React que facilita o roteamento e otimização da aplicação.
+- **Semantic UI**: Biblioteca de componentes UI para React, usada para criar uma interface limpa e responsiva.
+- **TypeScript**: Utilizado para adicionar tipagem estática ao projeto.
+
+<a id="execucao"></a>
+
+## 🖥️ Como Executar?
+
+### 1. Clonar o repositório
+
+Para começar, clone este repositório em sua máquina local:
+
+```bash
+git clone https://github.com/seu-usuario/caixa-eletronico.git
+cd caixa-eletronico
+```
+
+### 2. Instalar as dependências
+
+Execute o comando abaixo para instalar as dependências do projeto:
+
+```bash
+npm install
+```
+
+### 3. Executar a aplicação
+
+Após instalar as dependências, execute o comando para rodar a aplicação em modo de desenvolvimento:
 
 ```bash
 npm run dev
@@ -14,27 +77,28 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse a aplicação em http://localhost:3000
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+<a id="#execucao"></a>
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## 🌐 Como Funciona?
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+- O usuário insere um valor desejado no campo de entrada.
+- Clica no botão "Calcular Notas".
+- O sistema calcula a menor quantidade de cédulas necessárias para o valor inserido, considerando as notas de **R$ 20**, **R$ 10**, **R$ 5** e **R$ 1**.
+- A tabela de resultados é exibida com a quantidade de cada tipo de nota.
+- Um resumo do saque é mostrado com o número total de notas e o valor retirado.
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<a id="#contato"></a>
 
-## Learn More
+## 🦸 Contato
 
-To learn more about Next.js, take a look at the following resources:
+- Autor: Andresa A Ribeiro
+- E-mail: andresa_15ga@hotmail.com
+- LinkedIn: http://linkedin.com/in/andresa-alves-ribeiro
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+<a id="#licenca"></a>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📝 Licença
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+Este projeto é [MIT licensed](./LICENSE).
