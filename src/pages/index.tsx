@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Container, Header, Input, Button, Grid, Segment, Label, Message } from 'semantic-ui-react';
+import { Container, Header, Input, Button, Grid, Message, Table, TableBody, TableCell, TableHeader, TableHeaderCell, TableRow } from 'semantic-ui-react';
 import { useState } from "react";
 import 'semantic-ui-css/semantic.min.css';
 
@@ -33,7 +33,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <div className="teste">
       <Head>
         <title>Caixa Eletrônico</title>
         <meta name="description" content="Criado por Andresa A Ribeiro" />
@@ -41,14 +41,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Container style={{ marginTop: '3em' }}>
-        <Header as="h1" textAlign="center">
+      <Container>
+        <Header as="h1" textAlign="center" style={{ marginBottom: '1em' }}>
           Caixa Eletrônico
         </Header>
+
         <Grid centered>
           <Grid.Row>
             <Input
-              type="number"
+              type="text"
               value={valor}
               onChange={(e) => setValor(e.target.value.replace(/\D/g, ''))}
               placeholder="Digite o valor"
@@ -71,27 +72,29 @@ export default function Home() {
           )}
 
           {notas && (
-            <Grid.Row>
-              <Segment raised>
-                <Header as="h2" textAlign="center">
-                  Quantidade de Notas:
-                </Header>
-                <Grid columns={4} divided>
-                  <Grid.Row>
-                    {Object.entries(notas).map(([nota, qtd]) => (
-                      <Grid.Column key={nota} textAlign="center">
-                        <Label color="blue" size="large">
-                          Notas de {nota}: {qtd}
-                        </Label>
-                      </Grid.Column>
-                    ))}
-                  </Grid.Row>
-                </Grid>
-              </Segment>
-            </Grid.Row>
+            <Table celled structured>
+              <TableHeader>
+              <TableRow>
+                  <TableHeaderCell colSpan='4' textAlign="center">Quantidade de Notas:</TableHeaderCell>
+                </TableRow>
+                <TableRow>
+                  {Object.keys(notas).map((nota) => (
+                    <TableHeaderCell key={nota}>Notas de {nota}</TableHeaderCell>
+                  ))}
+                </TableRow>
+              </TableHeader>
+
+              <TableBody>
+                <TableRow>
+                  {Object.values(notas).map((qtd, index) => (
+                    <TableCell key={index}>{qtd}</TableCell>
+                  ))}
+                </TableRow>
+              </TableBody>
+            </Table>
           )}
         </Grid>
       </Container>
-    </>
+    </div>
   );
 }
