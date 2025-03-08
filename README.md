@@ -9,10 +9,11 @@
  <a href="#execucao">Como Executar?</a> •
  <a href="#funciona">Como funciona?</a> •
  <a href="#contato">Contato</a> • 
- <a href="#licença">Licença</a>
+ <a href="#licenca">Licença</a>
 </p>
 
 ## Demonstração
+![Captura de tela 2025-03-08 174116](https://github.com/user-attachments/assets/babf17b9-208b-4e7c-9cef-fdddb3cfb066)
 
 <a id="descricao"></a>
 
@@ -79,7 +80,7 @@ bun dev
 
 Acesse a aplicação em http://localhost:3000
 
-<a id="#execucao"></a>
+<a id="funciona"></a>
 
 ## 🌐 Como Funciona?
 
@@ -89,7 +90,7 @@ Acesse a aplicação em http://localhost:3000
 - A tabela de resultados é exibida com a quantidade de cada tipo de nota.
 - Um resumo do saque é mostrado com o número total de notas e o valor retirado.
 
-<a id="#contato"></a>
+<a id="contato"></a>
 
 ## 🦸 Contato
 
@@ -97,7 +98,7 @@ Acesse a aplicação em http://localhost:3000
 - E-mail: andresa_15ga@hotmail.com
 - LinkedIn: http://linkedin.com/in/andresa-alves-ribeiro
 
-<a id="#licenca"></a>
+<a id="licenca"></a>
 
 ## 📝 Licença
 
