@@ -6,20 +6,21 @@ import 'semantic-ui-css/semantic.min.css';
 type Notas = { [key: number]: number };
 
 export default function Home() {
-  const [valor, setValor] = useState('');
+  const [valor, setValor] = useState('0');
   const [notas, setNotas] = useState<Notas | null>(null);
-  const [erro, setErro] = useState('');
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let inputValue = e.target.value;
+
+    inputValue = inputValue.replace(/^0+/, '') || '0';
+
+    setValor(inputValue);
+    setNotas(null);
+  };
 
   const calcularNotas = () => {
     const valorConvertido = parseInt(valor, 10);
 
-    if (isNaN(valorConvertido) || valorConvertido <= 0) {
-      setErro("Por favor, insira um valor válido maior que zero.");
-      setNotas(null);
-      return;
-    }
-
-    setErro('');
     let valorRestante = valorConvertido;
     const notasDisponiveis = [20, 10, 5, 1];
     const resultado: Notas = {};
@@ -33,7 +34,7 @@ export default function Home() {
   };
 
   return (
-    <div className="teste">
+    <div className="componente-notas">
       <Head>
         <title>Caixa Eletrônico</title>
         <meta name="description" content="Criado por Andresa A Ribeiro" />
@@ -48,10 +49,13 @@ export default function Home() {
 
         <Grid centered>
           <Grid.Row>
+            <label htmlFor="valor">Valor a ser sacado:</label>
             <Input
-              type="text"
+              id="valor"
+              type="number"
+              min="1"
               value={valor}
-              onChange={(e) => setValor(e.target.value.replace(/\D/g, ''))}
+              onChange={handleInputChange}
               placeholder="Digite o valor"
               action
             >
@@ -62,37 +66,42 @@ export default function Home() {
             </Input>
           </Grid.Row>
 
-          {erro && (
+          {notas && (
             <Grid.Row>
-              <Message negative>
-                <Message.Header>Erro</Message.Header>
-                <p>{erro}</p>
-              </Message>
+              <Table celled structured>
+                <TableHeader>
+                  <TableRow>
+                    <TableHeaderCell colSpan="4" textAlign="center">Quantidade de Notas</TableHeaderCell>
+                  </TableRow>
+                  <TableRow>
+                    {Object.keys(notas).map((nota) => (
+                      <TableHeaderCell key={nota}>Notas de {nota}</TableHeaderCell>
+                    ))}
+                  </TableRow>
+                </TableHeader>
+
+                <TableBody>
+                  <TableRow>
+                    {Object.values(notas).map((qtd, index) => (
+                      <TableCell key={index}>{qtd}</TableCell>
+                    ))}
+                  </TableRow>
+                </TableBody>
+              </Table>
             </Grid.Row>
+
           )}
 
           {notas && (
-            <Table celled structured>
-              <TableHeader>
-              <TableRow>
-                  <TableHeaderCell colSpan='4' textAlign="center">Quantidade de Notas:</TableHeaderCell>
-                </TableRow>
-                <TableRow>
-                  {Object.keys(notas).map((nota) => (
-                    <TableHeaderCell key={nota}>Notas de {nota}</TableHeaderCell>
-                  ))}
-                </TableRow>
-              </TableHeader>
-
-              <TableBody>
-                <TableRow>
-                  {Object.values(notas).map((qtd, index) => (
-                    <TableCell key={index}>{qtd}</TableCell>
-                  ))}
-                </TableRow>
-              </TableBody>
-            </Table>
+            <Message info>
+              <Message.Header>Resumo do Saque</Message.Header>
+              <p>
+                Você sacou <strong>R${valor}</strong> utilizando {" "}
+                <strong>{Object.values(notas).reduce((a, b) => a + b, 0)}</strong> notas.
+              </p>
+            </Message>
           )}
+
         </Grid>
       </Container>
     </div>
