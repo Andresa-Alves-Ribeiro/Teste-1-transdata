@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import styles from "@/styles/Home.module.css";
+import { useState } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,7 +14,27 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+type Notas = {
+  [key: number]: number;
+};
+
 export default function Home() {
+  const [valor, setValor] = useState<string>('');
+  const [notas, setNotas] = useState<Notas>({});
+
+  const calcularNotas = () => {
+    let valorRestante = parseInt(valor, 10);
+    const notasDisponiveis: number[] = [20, 10, 5, 1];
+    const resultado: Notas = {};
+
+    notasDisponiveis.forEach((nota) => {
+      resultado[nota] = Math.floor(valorRestante / nota);
+      valorRestante %= nota;
+    });
+
+    setNotas(resultado);
+  };
+
   return (
     <>
       <Head>
@@ -22,9 +43,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div
-        className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
-      >
+
+      <div className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}>
         <main className={styles.main}>
           <Image
             className={styles.logo}
