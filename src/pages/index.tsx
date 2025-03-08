@@ -1,32 +1,30 @@
 import Head from "next/head";
-import { Geist, Geist_Mono } from "next/font/google";
-import styles from "@/styles/Home.module.css";
+import { Container, Header, Input, Button, Grid, Segment, Label, Message } from 'semantic-ui-react';
 import { useState } from "react";
+import 'semantic-ui-css/semantic.min.css';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-type Notas = {
-  [key: number]: number;
-};
+type Notas = { [key: number]: number };
 
 export default function Home() {
   const [valor, setValor] = useState('');
-  const [notas, setNotas] = useState<Notas>({});
+  const [notas, setNotas] = useState<Notas | null>(null);
+  const [erro, setErro] = useState('');
 
   const calcularNotas = () => {
-    let valorRestante = parseInt(valor, 10);
-    const notasDisponiveis: number[] = [20, 10, 5, 1];
+    const valorConvertido = parseInt(valor, 10);
+
+    if (isNaN(valorConvertido) || valorConvertido <= 0) {
+      setErro("Por favor, insira um valor válido maior que zero.");
+      setNotas(null);
+      return;
+    }
+
+    setErro('');
+    let valorRestante = valorConvertido;
+    const notasDisponiveis = [20, 10, 5, 1];
     const resultado: Notas = {};
 
-    notasDisponiveis.forEach((nota) => {
+    notasDisponiveis.forEach(nota => {
       resultado[nota] = Math.floor(valorRestante / nota);
       valorRestante %= nota;
     });
@@ -43,23 +41,57 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}>
-        <h1>Caixa Eletrônico</h1>
-        <input
-          type="number"
-          value={valor}
-          onChange={(e) => setValor(e.target.value)}
-          placeholder="Digite o valor"
-        />
-        <button onClick={calcularNotas}>Calcular Notas</button>
-        <div>
-          <h2>Quantidade de Notas:</h2>
-          <p>Notas de 20: {notas[20] || 0}</p>
-          <p>Notas de 10: {notas[10] || 0}</p>
-          <p>Notas de 5: {notas[5] || 0}</p>
-          <p>Notas de 1: {notas[1] || 0}</p>
-        </div>
-      </div>
+      <Container style={{ marginTop: '3em' }}>
+        <Header as="h1" textAlign="center">
+          Caixa Eletrônico
+        </Header>
+        <Grid centered>
+          <Grid.Row>
+            <Input
+              type="number"
+              value={valor}
+              onChange={(e) => setValor(e.target.value.replace(/\D/g, ''))}
+              placeholder="Digite o valor"
+              action
+            >
+              <input />
+              <Button color="blue" onClick={calcularNotas}>
+                Calcular Notas
+              </Button>
+            </Input>
+          </Grid.Row>
+
+          {erro && (
+            <Grid.Row>
+              <Message negative>
+                <Message.Header>Erro</Message.Header>
+                <p>{erro}</p>
+              </Message>
+            </Grid.Row>
+          )}
+
+          {notas && (
+            <Grid.Row>
+              <Segment raised>
+                <Header as="h2" textAlign="center">
+                  Quantidade de Notas:
+                </Header>
+                <Grid columns={4} divided>
+                  <Grid.Row>
+                    {Object.entries(notas).map(([nota, qtd]) => (
+                      <Grid.Column key={nota} textAlign="center">
+                        <Label color="blue" size="large">
+                          Notas de {nota}: {qtd}
+                        </Label>
+                      </Grid.Column>
+                    ))}
+                  </Grid.Row>
+                </Grid>
+              </Segment>
+            </Grid.Row>
+          )}
+        </Grid>
+      </Container>
     </>
   );
 }
