@@ -52,8 +52,8 @@ A aplicação foi construída em **ReactJS** e utiliza a biblioteca **Semantic U
 Para começar, clone este repositório em sua máquina local:
 
 ```bash
-git clone https://github.com/seu-usuario/caixa-eletronico.git
-cd caixa-eletronico
+git clone https://github.com/Andresa-Alves-Ribeiro/Teste-1-transdata.git
+cd Teste-1-transdata
 ```
 
 ### 2. Instalar as dependências
@@ -94,7 +94,7 @@ Acesse a aplicação em http://localhost:3000
 
 ## 🦸 Contato
 
-- Autor: Andresa A Ribeiro
+- Autora: Andresa A Ribeiro
 - E-mail: andresa_15ga@hotmail.com
 - LinkedIn: http://linkedin.com/in/andresa-alves-ribeiro
 
