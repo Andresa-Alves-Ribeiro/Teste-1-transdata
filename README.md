@@ -47,6 +47,12 @@ A aplicação foi construída em **ReactJS** e utiliza a biblioteca **Semantic U
 
 ## 🖥️ Como Executar?
 
+Voce pode executar o projeto clicando no link abaixo:
+
+https://teste-1-transdata.vercel.app/
+
+**OU**
+
 ### 1. Clonar o repositório
 
 Para começar, clone este repositório em sua máquina local:
